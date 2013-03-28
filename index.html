@@ -1,66 +1,243 @@
 <!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Slide spdy ws gecko by makotokato</title>
+<html lang="en">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Slide spdy ws gecko</h1>
-        <p></p>
+	<head>
+		<meta charset="utf-8">
 
-        <p class="view"><a href="https://github.com/makotokato/slide_spdy_ws_gecko">View the Project on GitHub <small>makotokato/slide_spdy_ws_gecko</small></a></p>
+		<title>Firefox SPDY + WS</title>
 
+		<meta name="description" content="Abount SDPY + WebSocket on Firefox/Gecko">
+		<meta name="author" content="Makoto Kato">
 
-        <ul>
-          <li><a href="https://github.com/makotokato/slide_spdy_ws_gecko/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/makotokato/slide_spdy_ws_gecko/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/makotokato/slide_spdy_ws_gecko">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>Welcome to GitHub Pages.</h3>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
 
-<h3>Designer Templates</h3>
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
 
-<h3>Rather Drive Stick?</h3>
+	<body>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+		<div class="reveal">
 
-<h3>Authors and Contributors</h3>
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+				<section>
+					<h1>Firefox SPDY + WS</h1>
+					<h3>SPDY/WebSocket on Gecko</h3>
+					<p>
+						<small><a href="mailto:m_kato@g2.so-net.ne.jp">Makoto Kato</a> / <a href="http://twitter.com/makoto_kato">@makoto_kato</a></small>
+					</p>
+				</section>
 
-<h3>Support or Contact</h3>
+				<section>
+					<h2>Agenda</h2>
+					<ul>
+						<li class="fragment">WebSocket on Gecko</li>
+						<li class="fragment">SPDY on Gecko</li>
+						<li class="fragment">Telemetry for SPDY</li>
+					</ul>
+				</section>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/makotokato">makotokato</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+				<section>
+					<h2>WebSocket on Gecko</h2>
+				</section>
+
+				<section>
+					<h2>WebSocket on Gecko</h2>
+					<p class="fragment">First support for desktop is Firefox 4</p>
+					<p class="fragment">Mobile (Android) is from Firefox 7</p>
+					<p class="fragment">Unprefxed is Firefox 11</p>
+					<p class="fragment">To enable/disable, use <em>network.websockets.enable</em> on <em>about:config</em></p>
+				</section>
+
+				<section>
+					<h2>WebSocket version</h2>
+					<p class="fragment">Version 76 ... Firefox 4 (2011/3)</p>
+					<p class="fragment">Version 7 ... Firefox 6 (2011/8)</p>
+					<p class="fragment">Version 10 ... Firefox 7 (2011/9)</p>
+					<p class="fragment">RFC 6455... Firefox 11 (2012/3)</p>
+				</section>
+
+				<section>
+					<h2>Outgoing Message Size on WS</h2>
+				  <p class="fragment">Firefox 10 or older .. <strong>16MB</strong></p>
+				  <p class="fragment">Firefox 11 or later .. <strong>2GB</strong> (depend on available memory)</p>
+				</section>
+
+				<section>
+					<h2>Firefox 11</h2>
+					<p class="fragment">Unprefixed and RFC 6455 support</p>
+					<p class="fragment">ArrayBuffer support</p>
+				</section>
+
+				<section>
+					<h2>ArrayBuffer</h2>
+					<p class="fragment">ArrayBuffer maps TypedArray (from WebGL)</p>
+					<p class="fragment">Modarn JavaScript engine has type-optimized JIT compiler</p>
+					<p class="fragment">Crankshaft by V8, IonMonkey by SpiderMonkey, DFG by JavaScriptCore</p> 
+				</section>
+
+				<section>
+					<h2>SPDY on Gecko</h2>
+				</section>
+
+				<section>
+					<h2>SPDY v2</h2>
+					<p class="fragment">First support is <strong>Firefox 11</strong> (Desktop and Mobile)</p>
+					<p class="fragment">But, default is <strong>OFF</strong> on 11 and 12</p>
+					<p class="fragment">Enabled as default by <strong>Firefox 13</strong> (2012/6)</p>
+					<p class="fragment">To enable/disable, use <em>network.http.spdy.enabled</em> on <em>about:config</em> (SPDY v2 and SPDY v3)</p>
+
+				</section>
+
+				<section>
+					<h2>SPDY v3</h2>
+					<p class="fragment">First support is <strong>Firefox 15</strong> (Desktop and Mobile) (2012/08)</p>
+					<p class="fragment">Ready on both ESR channel and Release channel</p>
+					<p class="fragment">Of course, ready on Firefox OS</p>
+				</section>
+
+				<section>
+					<h2>For internal test and addons</h2>
+					<p class="fragment">We provide a response header for SPDY</p>
+					<p class="fragment">To detect SPDY session, simply watch <strong>"X-Firefox-Spdy"</strong> header
+				</section>
+
+				<section>
+					<section>
+						<h2>SPDY headers by Inspector</h2>
+						<img class="fragment" src="spdy-header.png">
+					</section>
+
+					<section>
+					  <h2>SPDY headers by Inspector</h2>
+						<img class="fragment" src="spdy-inspector.png">
+					</section>
+				</section>
+
+				<section>
+					<h2>Limitation of SPDY impl. on Gecko</h2>
+					<ul>
+						<li class="fragment">v2 impelemtation is limited (ex. go away on failure case)</li>
+						<li class="fragment">NOT support client certificate authentication</li>
+						<li class="fragment">NOT support server push</li>
+						<li class="fragment">SSL false start is OFF</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Telemetry for SPDY</h2>
+				</section>
+
+				<section>
+					<h2>Performance Data?</h2>
+					<p class="fragment">We don't have enough resource to testing</p>
+					<img class="fragment" src="ms.png">
+					<p class="fragment">(Microsoft's lab)</p>
+				</section>
+
+				<section>
+					<h2>Data collection</h2>
+					<p class="fragment">Firefox collects several data on REAL usages</p>
+					<p class="fragment">TestPlot for UX</p>
+					<p class="fragment">HelthReport for diagnostics</p>
+					<p class="fragment">Telemetry for researh of performance</p>
+					<img class="fragment" src="telemetry.png">
+				</section>
+
+				<section>
+					<h2>What data does Mozilla collect by Telemetry?</h2>
+					<p class="fragment">
+						<a href="http://mxr.mozilla.org/mozilla-central/source/toolkit/components/telemetry/Histograms.json">http://mxr.mozilla.org/mozilla-central/source/toolkit/components/telemetry/Histograms.json</a>
+				</p>
+				</section>
+
+				<section>
+					<h2>My telemetry data?</h2>
+					<p class="fragment">via about:telemetry (Firefox 19+) or <a herf="https://addons.mozilla.org/en-us/firefox/addon/abouttelemetry/">about:telemetry addons</a></p>
+					<img class="fragment" src="telemetry-simple.png">
+				</section>
+
+				<section>
+					<h2>about:telemetry</h2>
+				</section>
+
+				<section>
+					<h2>Ex. SPDY_REQUEST_PER_CONN</h2>
+					<img class="fragment" src="telemetry-spdy-conn.png">
+				</section>
+
+				<section>
+					<h2>Ex. SPDY_VERSION2</h2>
+					<p class="fragment">2013/02/01 vs 2013/03/01</p>
+					<img class="fragment" src="spdy-201302.png">
+					<img class="fragment" src="spdy-201303.png">
+				</section>
+
+				<section>
+					<h2>References</h2>
+					<ul>
+						<li><a href="https://developer.mozilla.org/en-US/docs/WebSockets">WebSocket (MDN)</a></li>
+						<li><a href="https://hacks.mozilla.org/2012/02/spdy-brings-responsive-and-scalable-transport-to-firefox-11/">SPDY Brings Responsive and Scalable Transport to Firefox 11</a></li>
+						<li><a href="https://wiki.mozilla.org/Platform/Features/SPDY/TestPlan">SPDY - TestPlan</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>THE END</h1>
+					<h3>Makoto Kato / <a href="http://twitter.com/makoto_kato">@makoto_kato</a></h3>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: 'linear',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					// { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					// { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
 </html>
